@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pinta a Snoopy ♡</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="pintar.css">
+</head>
+
+<body>
+
+    <div class="floating-hearts" aria-hidden="true">
+        <span>♡</span>
+        <span>♡</span>
+        <span>♡</span>
+        <span>♡</span>
+        <span>♡</span>
+    </div>
+
+    <header class="topbar">
+
+        <a class="back-link" href="index.html">
+            ← Volver
+        </a>
+
+        <div class="mini-logo">
+            ♡ Snoopy ♡
+        </div>
+
+    </header>
+
+    <main>
+
+        <section class="intro">
+
+            <span class="eyebrow">
+                ♡ UN PEQUEÑO JUEGO PARA TI ♡
+            </span>
+
+            <h1>
+                Pinta a Snoopy
+            </h1>
+
+            <p>
+                Elige un color y toca cualquier parte del dibujo para llenarla.
+                Puedes colorear a Snoopy, las flores, la comida, las nubes y todo
+                lo que encuentres. 🌷
+            </p>
+
+        </section>
+
+
+        <section class="painting-area">
+
+            <div class="paint-card">
+
+
+                <!-- SELECTOR DE DIBUJOS -->
+
+                <div class="drawing-selector">
+
+                    <div class="selector-heading">
+
+                        <div>
+
+                            <span class="selector-label">
+                                ♡ ELIGE TU DIBUJO
+                            </span>
+
+                            <p>
+                                Escoge uno de tus dibujos para empezar.
+                            </p>
+
+                        </div>
+
+                        <span class="selector-decoration">
+                            ✦ ♡ ✦
+                        </span>
+
+                    </div>
+
+
+                    <div class="drawing-options">
+
+
+                        <button
+                            class="drawing-option active"
+                            type="button"
+                            data-image="snoopy_colorear.png"
+                            data-title="Un picnic para colorear ♡">
+
+                            <img
+                                src="snoopy_colorear.png"
+                                alt="Dibujo de Snoopy 1"
+                            >
+
+                            <span>
+                                Dibujo 1
+                            </span>
+
+                        </button>
+
+
+                        <button
+                            class="drawing-option"
+                            type="button"
+                            data-image="snoopy_colorear1.png"
+                            data-title="Otro pequeño momento ♡">
+
+                            <img
+                                src="snoopy_colorear1.png"
+                                alt="Dibujo de Snoopy 2"
+                            >
+
+                            <span>
+                                Dibujo 2
+                            </span>
+
+                        </button>
+
+
+                        <button
+                            class="drawing-option"
+                            type="button"
+                            data-image="snoopy_colorear2.png"
+                            data-title="Un momento especial ♡">
+
+                            <img
+                                src="snoopy_colorear2.png"
+                                alt="Dibujo de Snoopy 3"
+                            >
+
+                            <span>
+                                Dibujo 3
+                            </span>
+
+                        </button>
+
+
+                        <button
+    class="drawing-option"
+    type="button"
+    data-image="snoopy_colorear3.png"
+    data-title="Un último dibujo ♡">
+
+    <img
+        src="snoopy_colorear3.png"
+        alt="Dibujo de Snoopy 4"
+    >
+
+    <span>Dibujo 4</span>
+
+</button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CABECERA DEL CANVAS -->
+
+                <div class="canvas-header">
+
+                    <div>
+
+                        <span class="tiny-label">
+                            MI DIBUJO
+                        </span>
+
+                        <h2 id="drawingTitle">
+                            Un picnic para colorear ♡
+                        </h2>
+
+                    </div>
+
+
+                    <div class="progress-box">
+
+                        <span id="progressText">
+                            0%
+                        </span>
+
+                        <span>
+                            pintado
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CANVAS -->
+
+                <div
+                    class="canvas-wrap"
+                    id="canvasWrap"
+                >
+
+                    <canvas id="paintCanvas"></canvas>
+
+
+                    <div
+                        class="canvas-message"
+                        id="canvasMessage"
+                    >
+
+                        <span>
+                            🎨
+                        </span>
+
+                        <b>
+                            Elige un color y toca una zona
+                        </b>
+
+                        <small>
+                            ¡Haz magia con Snoopy! ♡
+                        </small>
+
+                    </div>
+
+
+                    <div
+                        class="canvas-loading"
+                        id="canvasLoading"
+                    >
+
+                        <span>
+                            🎨
+                        </span>
+
+                        <b>
+                            Cargando dibujo...
+                        </b>
+
+                    </div>
+
+                </div>
+
+
+                <!-- COLOR SELECCIONADO -->
+
+                <div
+                    class="selected-name"
+                    id="selectedName"
+                >
+                    Selecciona un color ♡
+                </div>
+
+
+                <!-- PALETA -->
+
+                <div class="palette-section">
+
+                    <div class="palette-title">
+
+                        <span>
+                            Paleta de colores
+                        </span>
+
+
+                        <label class="custom-color">
+
+                            <span>
+                                Tu color
+                            </span>
+
+                            <input
+                                type="color"
+                                id="customColor"
+                                value="#ff8fb1"
+                            >
+
+                        </label>
+
+                    </div>
+
+
+                    <div
+                        class="palette"
+                        id="palette"
+                    >
+
+                        <button
+                            class="color active"
+                            data-color="#ff8fb1"
+                            style="--color:#ff8fb1"
+                            aria-label="Rosa">
+                        </button>
+
+
+                        <button
+                            class="color"
+                            data-color="#ffcfdf"
+                            style="--color:#ffcfdf"
+                            aria-label="Rosa claro">
+                        </button>
+
+
+                        <button
+                            class="color"
+                            data-color="#8ecae6"
+                            style="--color:#8ecae6"
+                            aria-label="Azul">
+                        </button>
+
+
+                        <button
+                            class="color"
+                            data-color="#bde0fe"
+                            style="--color:#bde0fe"
+                            aria-label="Celeste">
+                        </button>
+
+
+                        <button
+                            class="color"
+                            data-color="#cdb4db"
+                            style="--color:#cdb4db"
+                            aria-label="Lila">
+                        </button>
+
+
+                        <button
+                            class="color"
+                            data-color="#b7e4c7"
+                            style="--color:#b7e4c7"
+                            aria-label="Verde">
+                        </button>
+
+
+                        <button
+                            class="color"
+                            data-color="#ffd166"
+                            style="--color:#ffd166"
+                            aria-label="Amarillo">
+                        </button>
+
+
+                        <button
+                            class="color"
+                            data-color="#f4a261"
+                            style="--color:#f4a261"
+                            aria-label="Naranja">
+                        </button>
+
+
+                        <button
+                            class="color"
+                            data-color="#e76f51"
+                            style="--color:#e76f51"
+                            aria-label="Coral">
+                        </button>
+
+
+                        <button
+                            class="color"
+                            data-color="#9b5de5"
+                            style="--color:#9b5de5"
+                            aria-label="Violeta">
+                        </button>
+
+
+                        <button
+                            class="color"
+                            data-color="#72b7a8"
+                            style="--color:#72b7a8"
+                            aria-label="Turquesa">
+                        </button>
+
+
+                        <button
+                            class="color"
+                            data-color="#5b4636"
+                            style="--color:#5b4636"
+                            aria-label="Marrón">
+                        </button>
+
+
+                        <button
+                            class="color"
+                            data-color="#ffffff"
+                            style="--color:#ffffff"
+                            aria-label="Blanco">
+                        </button>
+
+
+                        <button
+                            class="color"
+                            data-color="#222222"
+                            style="--color:#222222"
+                            aria-label="Negro">
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BOTONES -->
+
+                <div class="tool-row">
+
+                    <button
+                        class="tool-btn"
+                        id="undoBtn"
+                    >
+                        ↶
+                        <span>
+                            Deshacer
+                        </span>
+                    </button>
+
+
+                    <button
+                        class="tool-btn"
+                        id="resetBtn"
+                    >
+                        ↻
+                        <span>
+                            Reiniciar
+                        </span>
+                    </button>
+
+
+                    <button
+                        class="tool-btn save"
+                        id="saveBtn"
+                    >
+                        ♡
+                        <span>
+                            Guardar dibujo
+                        </span>
+                    </button>
+
+                </div>
+
+
+                <p class="tip">
+
+                    💡
+                    <b>Tip:</b>
+                    si una zona es muy pequeña, acércate con el zoom
+                    del navegador para pintarla con más facilidad.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section class="sweet-message">
+
+            <span>
+                ♡
+            </span>
+
+            <p>
+                No importa cómo quede. Lo bonito es que lo hiciste tú.
+            </p>
+
+            <span>
+                ♡
+            </span>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        Hecho con mucho cariño ♡
+    </footer>
+
+
+    <script src="pintar.js"></script>
+
+</body>
+</html>
